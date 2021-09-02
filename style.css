@@ -1,0 +1,10 @@
+/* books column style */
+.col {
+    width:25%;
+}
+/* books image style */
+.card img{
+    width:100%;
+    height: 60%;
+}
+
