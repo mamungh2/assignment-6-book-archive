@@ -1,4 +1,5 @@
 const showBooks = () => {
+
     // get input from search field
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
@@ -9,6 +10,8 @@ const showBooks = () => {
         return;
     }
     else {
+        toggleSpinner('block');
+        toggleSearchResult('none');
         showFoundMessage('');
         document.getElementById('search-result').textContent = '';
     }
@@ -27,6 +30,7 @@ const displayBooks = books => {
     // check if searched item in exist or not
     if (books.length === 0 || null) {
         showFoundMessage('No result found');
+        toggleSpinner('none');
         document.getElementById('search-result').textContent = '';
         return;
     }
@@ -46,36 +50,25 @@ const displayBooks = books => {
                 </div>
             </div>`;
         searchResult.appendChild(div);
+        toggleSpinner('none');
+        toggleSearchResult('flex');
+
     })
 }
+
 // function for showing results quantity
 const showFoundMessage = message => {
     const foundMessage = document.getElementById('found-message');
     foundMessage.innerText = message;
 }
 
+// function for toggle spinner
+const toggleSpinner = displayStatus => {
+    document.getElementById('spinner').style.display = displayStatus;
 
+}
 
-
-
-
-
-
-// const loadBooks = books => {
-//     console.log('Total found: ', books.length);
-//     const searchResult = document.getElementById('search-result');
-//     const h4 = document.createElement('h4');
-//     searchResult.appendChild(h4);
-//     h4.innerText = 'Search Result:';
-//     books?.forEach(book => {
-//         const p = document.createElement('p');
-//         p.innerText = `Books Name: ${book.title}, Author: ${book?.author_name[0]}, First Published: ${book?.first_publish_year ?? 'sorry not found'}`;
-//         searchResult.appendChild(p);
-//         return;
-//     })
-// }
-
-
-// h4>Search Result:</h4>
-//         <p>Books Name: ${book.title}, Author: ${book?.author_name[0]}, First Published: ${book?.first_publish_year}</p>
-
+// function for toggle search result
+const toggleSearchResult = displayStatus => {
+    document.getElementById('search-result').style.display = displayStatus;
+}
